@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Analyzer Tool</title>
+</head>
+<body>
+  <h1>Text Analyzer Tool</h1>
+  <input type="text" id="input-text" placeholder="Enter text to analyze">
+  <button id="count-words-btn">Count Words</button>
+  <button id="to-lower-case-btn">To Lower Case</button>
+  <button id="to-upper-case-btn">To Upper Case</button>
+  <button id="check-substring-btn">Check Substring</button>
+  <div id="result-display"></div>
+
+<script src>
+    // Get the input text element and result display elements
+const inputText = document.getElementById('input-text');
+const resultDisplay = document.getElementById('result-display');
+
+// Define the text analysis functions
+function countWords(text) {
+  return text.split(' ').length;
+}
+
+function toLowerCase(text) {
+  return text.toLowerCase();
+}
+
+function toUpperCase(text) {
+  return text.toUpperCase();
+}
+
+function checkSubstring(text, substring) {
+  return text.includes(substring);
+}
+
+// Define the higher-order function to handle event listeners
+function createEventListener(func) {
+  return function(event) {
+    const text = inputText.value;
+    const result = func(text);
+    displayResult(result);
+  };
+}
+
+// Define the function to display the result
+function displayResult(result) {
+  resultDisplay.innerText = result;
+}
+
+// Add event listeners to the buttons
+document.getElementById('count-words-btn').addEventListener('click', createEventListener(countWords));
+document.getElementById('to-lower-case-btn').addEventListener('click', createEventListener(toLowerCase));
+document.getElementById('to-upper-case-btn').addEventListener('click', createEventListener(toUpperCase));
+document.getElementById('check-substring-btn').addEventListener('click', function(event) {
+  const text = inputText.value;
+  const substring = prompt('Enter the substring to check:');
+  const result = checkSubstring(text, substring);
+  displayResult(result ? 'Substring found!' : 'Substring not found!');
+});
+</script>
+</body>
+</html>
