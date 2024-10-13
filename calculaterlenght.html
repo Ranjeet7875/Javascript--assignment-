@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>calculate length</h1>
+    <input id="textinput" type="text" placeholder="enter the text">
+    <button id="goButton">Go</button>
+    <p id="result"></p>
+<script>
+    const inputElement=document.getElementById('textinput')
+    const goButton=document.getElementById('goButton')
+    const result=document.getElementById('result')
+    goButton.addEventListener('click',calculatelength);
+    function calculatelength(){
+        const userinput=inputElement.value;
+        const lengthwithoutspace=userinput.replace(/\s+/g,'').length;
+        result.textContent=lengthwithoutspace
+    }
+
+</script>
+</body>
+
+</html>
